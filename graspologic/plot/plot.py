@@ -1405,6 +1405,7 @@ def screeplot(
     X: np.ndarray,
     title: str = "Scree plot",
     context: str = "talk",
+    ax: matplotlib.axes.Axes = None,
     font_scale: float = 1,
     figsize: Tuple[int, int] = (10, 5),
     cumulative: bool = True,
@@ -1422,6 +1423,8 @@ def screeplot(
         Plot title
     context :  None, or one of {talk (default), paper, notebook, poster}
         Seaborn plotting context
+    ax : None, or an Axes object detailing which axes the plot should be
+        plotted on
     font_scale : float, optional, default: 1
         Separate scaling factor to independently scale the size of the font
         elements.
@@ -1454,8 +1457,12 @@ def screeplot(
         y = np.cumsum(D[:show_first])
     else:
         y = D[:show_first]
-    _ = plt.figure(figsize=figsize)
-    ax = plt.gca()
+    fig = plt.figure(figsize=figsize)
+    if ax is None:
+        ax = plt.gca()
+    else:
+        ax.remove()
+        ax.set_figure(fig)
     xlabel = "Component"
     ylabel = "Variance explained"
     with sns.plotting_context(context=context, font_scale=font_scale):
@@ -1463,6 +1470,7 @@ def screeplot(
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
+        plt.axes(ax)
     return ax
 
 
