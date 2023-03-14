@@ -10,7 +10,7 @@ from typing import Optional, Union
 
 import networkx as nx
 import numpy as np
-import scipy.sparse as sp
+from scipy.sparse import csr_array, csr_matrix
 
 # an explanation, for those who come in the later times:
 # the following is because when type hinting first came out, Python 3.6 up to 3.8
@@ -34,18 +34,26 @@ if sys.version_info >= (3, 9):
 else:
     from typing import Dict, List, Set, Tuple
 
-AdjacencyMatrix = Union[np.ndarray, sp.csr_matrix]
 
-GraphRepresentation = Union[np.ndarray, sp.csr_matrix, nx.Graph]
+AdjacencyMatrix = Union[np.ndarray, csr_matrix, csr_array]
+
+GraphRepresentation = Union[AdjacencyMatrix, nx.Graph]
 
 RngType = Optional[Union[int, np.integer, np.random.Generator]]
 
+Scalar = Union[int, float, np.integer]
+
+Int = Union[int, np.integer]
+
 __all__ = [
     "AdjacencyMatrix",
+    "csr_array",
     "Dict",
-    "List",
     "GraphRepresentation",
+    "Int",
+    "List",
     "RngType",
+    "Scalar",
     "Set",
     "Tuple",
 ]
