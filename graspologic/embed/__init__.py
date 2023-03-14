@@ -4,6 +4,7 @@
 from .ase import AdjacencySpectralEmbed
 from .base import BaseSpectralEmbed
 from .case import CovariateAssistedEmbed
+from .gee import GraphEncoderEmbed
 from .lse import LaplacianSpectralEmbed
 from .mase import MultipleASE
 from .mds import ClassicalMDS
@@ -13,14 +14,16 @@ from .omni import OmnibusEmbed
 from .svd import select_dimension, select_svd
 
 __all__ = [
-    "ClassicalMDS",
-    "OmnibusEmbed",
     "AdjacencySpectralEmbed",
+    "BaseSpectralEmbed",
+    "ClassicalMDS",
+    "CovariateAssistedEmbed",
+    "GraphEncoderEmbed",
     "LaplacianSpectralEmbed",
+    "mug2vec",
     "MultipleASE",
     "node2vec_embed",
+    "OmnibusEmbed",
     "select_dimension",
     "select_svd",
-    "BaseSpectralEmbed",
-    "CovariateAssistedEmbed",
 ]
